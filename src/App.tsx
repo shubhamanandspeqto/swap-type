@@ -13,7 +13,7 @@ const App = () => {
   // const usertokenavalueRef = React.useRef();
   // const usertokenbRef = React.useRef();
   // const usertokenbvalueRef = React.useRef();
-  const walletId= '';
+  var walletId= '';
   // const [formData, updateFormData] = React.useState(initialFormData);
 
   // const initialFormData = Object.freeze({
@@ -37,12 +37,12 @@ const App = () => {
 
     setConnected(true)
 
-    // window.solana.connect().then((res) => {
-    //   console.log(res,'wallet------------')
-    //   walletId = res.publicKey.toString()
-    //   window.alert(walletId)
-    //   // console.log("wallet-address",id)
-    // });
+    window.solana.connect().then((res:any) => {
+      console.log(res,'wallet------------')
+      walletId = res.publicKey.toString()
+      window.alert(walletId)
+      // console.log("wallet-address",id)
+    });
 
 
 
