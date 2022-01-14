@@ -3,36 +3,20 @@ import React, { useState } from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-widgets/styles.css";
-import DropdownList from "react-widgets/DropdownList";
+// import DropdownList from "react-widgets/DropdownList";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { main } from "../src/token-swap/js/cli/script-main";
 
 const App = () => {
   const [isConnected, setConnected] = useState(false);
-  // const usertokenaRef = React.useRef();
-  // const usertokenavalueRef = React.useRef();
-  // const usertokenbRef = React.useRef();
-  // const usertokenbvalueRef = React.useRef();
+  const [senderSelectToken, setsenderSelectToken] = useState("SOL");
+  const [senderSelectValue, setsenderSelectValue] = useState("0");
+  const [ReceverValue, setReceverValue] = useState("SOL");
+  const [senderReceverValue, setsenderReceverValue] = useState("0");
+
   var walletId= '';
-  // const [formData, updateFormData] = React.useState(initialFormData);
-
-  // const initialFormData = Object.freeze({
-  //   tokena: "",
-  //   tokenavalue: "",
-  //   tokenb:"",
-  //   tokenbvalue:""
-  // });
-
-  // const handleChange = (e) => {
-  //   updateFormData({
-  //     ...formData,
-
-  //     // Trimming any whitespace
-  //     [e.target.name]: e.target.value.trim()
-  //   });
-  // };
-
-
+  main();
+  
   const handleClick = () => {
 
     setConnected(true)
@@ -41,25 +25,49 @@ const App = () => {
       console.log(res,'wallet------------')
       walletId = res.publicKey.toString()
       window.alert(walletId)
-      // console.log("wallet-address",id)
     });
 
-
-
   }
-
     const handleClick1 = () => {
       // window.solana.disconnect(); 
       setConnected(false);
     }
+
+  function handleChange(event:any) {
+    console.log(event.target.value)
+    setsenderSelectToken(event.target.value)
+  }
+  function handleChange2(event:any) {
+    console.log(event.target.value)
+    setsenderSelectValue(event.target.value)
+  }
+  function handleChange3(event:any) {
+    console.log(event.target.value)
+    setReceverValue(event.target.value)
+  }
+  function handleChange4(event:any) {
+    console.log(event.target.value)
+    setsenderReceverValue(event.target.value)
+  }
   function handleSubmit(e:any) {
-    main();
+
+
+console.log(senderSelectToken,senderSelectValue,ReceverValue,senderReceverValue)
+
+
+
+
+
+    // main();
+console.log()
     e.preventDefault();
     console.log('You clicked submit.');
-    window.alert('You clicked submit.');
+    console.log( e.target.value);
 
-    // console.log(usertokenaRef.current.value, usertokenavalueRef.current.value, usertokenbRef.current.value, usertokenbvalueRef.current.value);
+    
   }
+
+
   return (
     <div className="App">
 
@@ -69,10 +77,10 @@ const App = () => {
         <Container className='token-a'>
           <Row>
             <Col>
-              <select >
+              <select value={senderSelectToken} onChange={handleChange} >
                 <option value="SOL">SOL</option>
                 <option value="SRM">SRM</option>
-                <option value="USDC">USDC</option>
+                {/* <option value="USDC">USDC</option> */}
               </select>
             </Col>
             {/* <Col> <DropdownList
@@ -81,16 +89,16 @@ const App = () => {
               defaultValue="SOL"
               data={["SRM", "SOL", "USDC", "USDT"]}
             /></Col> */}
-            <Col><Form.Control  type="text" placeholder="0" /></Col>
+            <Col><Form.Control value={senderSelectValue} onChange={handleChange2} type="text" placeholder="0" /></Col>
           </Row>
         </Container>
         <Container className='token-b'>
           <Row>
             <Col>
-              <select >
+              <select value={ReceverValue} onChange={handleChange3}>
                 <option value="SOL">SOL</option>
                 <option value="SRM">SRM</option>
-                <option value="USDC">USDC</option>
+                {/* <option value="USDC">USDC</option> */}
               </select>
             </Col>
             {/* <Col><DropdownList
@@ -99,7 +107,7 @@ const App = () => {
               defaultValue="SOL"
               data={["SRM", "SOL", "USDC", "USDT"]}
             /></Col> */}
-            <Col><Form.Control  type="text" placeholder="0" /></Col>
+            <Col><Form.Control value={senderReceverValue} onChange={handleChange4} type="text" placeholder="0" /></Col>
           </Row>
         </Container>
         <Button variant="primary" type="submit">
