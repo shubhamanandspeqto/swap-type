@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/src/token-swap/js/node_modules
 # testing
 /coverage
 
