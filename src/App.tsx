@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-widgets/styles.css";
@@ -7,23 +7,13 @@ import DropdownList from "react-widgets/DropdownList";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { main } from "../src/token-swap/js/cli/script-main";
 
-function useMyCustomHook<T extends HTMLElement>{
-  const myRef = useRef<T>(null)
-
-  // do something with the ref, e.g. adding event listeners
-
-  return {ref: myRef}
-}
 const App = () => {
- 
   const [isConnected, setConnected] = useState(false);
-  const usertokenaRef = React.createRef();
-  const usertokenavalueRef = React.createRef();
-  const usertokenbRef = React.createRef();
-  const usertokenbvalueRef = React.createRef();
+  // const usertokenaRef = React.useRef();
+  // const usertokenavalueRef = React.useRef();
+  // const usertokenbRef = React.useRef();
+  // const usertokenbvalueRef = React.useRef();
   const walletId= '';
-
-  
   // const [formData, updateFormData] = React.useState(initialFormData);
 
   // const initialFormData = Object.freeze({
@@ -42,7 +32,7 @@ const App = () => {
   //   });
   // };
 
-  const {ref: myElementRef} = useMyCustomHook<HTMLDivElement>()
+
   const handleClick = () => {
 
     setConnected(true)
@@ -76,8 +66,8 @@ const App = () => {
         <h2>Swap</h2>
         <Container className='token-a'>
           <Row>
-            <Col >
-              <select ref={myElementRef}>
+            <Col>
+              <select >
                 <option value="SOL">SOL</option>
                 <option value="SRM">SRM</option>
                 <option value="USDC">USDC</option>
