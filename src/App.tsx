@@ -53,9 +53,11 @@ const App = () => {
       setConnected(false);
     }
   function handleSubmit(e:any) {
-    // main(walletId);
+    main();
     e.preventDefault();
-    // console.log('You clicked submit.');
+    console.log('You clicked submit.');
+    window.alert('You clicked submit.');
+
     // console.log(usertokenaRef.current.value, usertokenavalueRef.current.value, usertokenbRef.current.value, usertokenbvalueRef.current.value);
   }
   return (
